@@ -14,7 +14,7 @@ import (
 
 type User struct {
 	ID        int       `gorm:"primary_key;auto_increament" json:"id"`
-	Name      string    `gorm:"not null; unique" json:"name"`
+	Name      string    `gorm:"not null" json:"name"`
 	Email     string    `gorm:"not null; unique" json:"email"`
 	Password  string    `gorm:"not null; unique" json:"password"`
 	CreatedAt time.Time `gorm:"default:CURRENT_TIMESTAMP" json:"created_at"`
@@ -90,11 +90,9 @@ func (u *User) Validate(action string) error {
 		}
 		return nil
 	}
-
 }
 
 func (u *User) SaveUser(db *gorm.DB) (*User, error) {
-
 	var err error
 	err = db.Debug().Create(&u).Error
 	if err != nil {
