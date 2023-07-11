@@ -52,6 +52,7 @@ func ExtractToken(r *http.Request) string {
 	return ""
 }
 
+// added a normal comment
 func ExtractTokenID(r *http.Request) (uint32, error) {
 	tokenString := ExtractToken(r)
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
